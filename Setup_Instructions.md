@@ -1,5 +1,6 @@
 **JDK version used:**
     Check Java version by Java --version in Terminal 
+
 Expected Response:
     java 11.0.26 2025-01-21 LTS
     Java(TM) SE Runtime Environment 18.9 (build 11.0.26+7-LTS-187)
