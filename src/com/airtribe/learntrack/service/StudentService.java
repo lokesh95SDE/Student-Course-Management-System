@@ -1,12 +1,13 @@
 package com.airtribe.learntrack.service;
 
 import com.airtribe.learntrack.entity.Student;
+import com.airtribe.learntrack.exception.EntityNotFoundException;
 import com.airtribe.learntrack.util.IdGenerator;
 
 import java.util.ArrayList;
 
 public class StudentService {
-    public static ArrayList<Student> studentList = new ArrayList();
+    public static ArrayList<Student> studentList = new ArrayList<>();
 
     public void addStudent(String firstName, String lastName, String email, String batch){
         int id = IdGenerator.getNextStudentId();
@@ -14,56 +15,56 @@ public class StudentService {
         studentList.add(studentDetails);
         System.out.println("Student added successfully with ID: "+id);
     }
+    public void addStudent(String firstName, String lastName, String batch){
+        int id = IdGenerator.getNextStudentId();
+        Student studentDetails = new Student(id,firstName,lastName);
+        studentDetails.setBatch(batch);
+        studentList.add(studentDetails);
+        System.out.println("Student added successfully with ID: "+id);
+    }
 
-    public void listStudents(){
+    public void listStudents() throws EntityNotFoundException {
         if(studentList.isEmpty()){
-            System.out.println("No students found.");
-            return;
+            throw new EntityNotFoundException("Student not found");
         }
         for(Student studentDetail : studentList){
+            String email = (studentDetail.getEmail() == null) ? "N/A" : studentDetail.getEmail();
             System.out.println(
                     studentDetail.getId() + " | " +
                             studentDetail.getDisplayName() + " | " +
-                            studentDetail.getEmail() + " | " +
+                            email + " | " +
                             studentDetail.getBatch() + " | Active: " + studentDetail.isActive()
             );
-
         }
     }
-
-    public Student findStudentById(int id) {
-
+    public Student findStudentById(int id) throws EntityNotFoundException {
         for (Student studentDetail : studentList) {
             if (studentDetail.getId() == id) {
                 return studentDetail;
             }
         }
-        return null;
+        throw new EntityNotFoundException("Student not found with ID: " + id);
     }
 
-    public void removeStudent(int id){
+    public void removeStudent(int id) throws EntityNotFoundException {
         Student studentDetail = findStudentById(id);
-        if(studentDetail==null){
-            System.out.println("Student not found!");
-            return;
-        }
         studentList.remove(studentDetail);
         System.out.println("Student is removed!");
     }
 
-
-
-    public void updateStudent(int id){
-
+    public void deactivateStudent(int id) throws EntityNotFoundException {
+        Student studentDetail = findStudentById(id);
+        studentDetail.setActive(false);
+        System.out.println("Student is deactivated!");
     }
 
-    public void deactivateStudent(int id){
-    Student studentDetail = findStudentById(id);
-    if(studentDetail==null){
-        System.out.println("Student not found!");
-        return;
+    public void updateStudent(int id, String firstName, String lastName, String email, String batch) throws EntityNotFoundException {
+        Student studentDetail = findStudentById(id);
+        studentDetail.setFirstName(firstName);
+        studentDetail.setLastName(lastName);
+        studentDetail.setEmail(email);
+        studentDetail.setBatch(batch);
+        System.out.println("Student details updated successfully!");
     }
-    studentDetail.setActive(false);
-    System.out.println("Student is deactivated!");
-    }
+
 }
