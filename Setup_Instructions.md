@@ -9,7 +9,7 @@ Expected Response:
 **Brief explanation of “Hello World” program run:**
 1. Create New Java Project 'Student course Management System'
 2. src/Main.java path contains Hello and welcome! Program
-3. Execute it check able to results in Console
+3. Execute it check able to see results in Console
 
 Expected Response:
 ![img.png](img.png)
