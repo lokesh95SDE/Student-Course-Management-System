@@ -8,7 +8,7 @@ import com.airtribe.learntrack.util.IdGenerator;
 import java.util.ArrayList;
 
 public class CourseService   {
-    public static ArrayList<Course> courseList = new ArrayList<>();
+    private ArrayList<Course> courseList = new ArrayList<>();
 
     public void addCourse(String courseName, String description, int durationInWeeks, boolean active){
         int id = IdGenerator.getNextCourseId();

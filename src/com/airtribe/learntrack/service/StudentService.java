@@ -3,20 +3,24 @@ package com.airtribe.learntrack.service;
 import com.airtribe.learntrack.entity.Student;
 import com.airtribe.learntrack.exception.EntityNotFoundException;
 import com.airtribe.learntrack.util.IdGenerator;
+import com.airtribe.learntrack.util.InputValidator;
 
 import java.util.ArrayList;
 
 public class StudentService {
-    public static ArrayList<Student> studentList = new ArrayList<>();
+    private ArrayList<Student> studentList = new ArrayList<>();
 
     public void addStudent(String firstName, String lastName, String email, String batch){
         int id = IdGenerator.getNextStudentId();
+        InputValidator.validateString(firstName,firstName);
         Student studentDetails = new Student(id,firstName,lastName,email,batch);
         studentList.add(studentDetails);
         System.out.println("Student added successfully with ID: "+id);
     }
+
     public void addStudent(String firstName, String lastName, String batch){
         int id = IdGenerator.getNextStudentId();
+        InputValidator.validateString(firstName,firstName);
         Student studentDetails = new Student(id,firstName,lastName);
         studentDetails.setBatch(batch);
         studentList.add(studentDetails);
