@@ -26,16 +26,20 @@ public class EnrollementService {
         int id = IdGenerator.getNextEnrollmentId();
         Student student =studentService.findStudentById(studentId);
         Course course = courseService.findCourseById(courseId);
-        Enrollment enrollDetails = new Enrollment(id, studentId,courseId,null,EnrollmentStatus.COMPLETED);
+        String studentName =  student.getDisplayName();
+        String courseName =  course.getCourseName();
+        Enrollment enrollDetails = new Enrollment(id, studentId,courseId,studentName,courseName,null,EnrollmentStatus.COMPLETED);
         enrollmentDetails.add(enrollDetails);
         System.out.println("Enrollment added successfully with ID: "+id);
     }
-public void viewEnrollment(){
+public void viewEnrollments(){
         for(Enrollment enrollDetail : enrollmentDetails){
             System.out.println(
                     enrollDetail.getId() + " | " +
                             enrollDetail.getStudentId() + " | " +
                             enrollDetail.getCourseId() + " | " +
+                            enrollDetail.getStudentName() + " | " +
+                            enrollDetail.getCourseName() + " | " +
                             enrollDetail.getEnrollmentDate() + " | " +
                             enrollDetail.getStatus()
             );
@@ -48,6 +52,8 @@ public void viewEnrollment(){
                 enrollDetail.getId() + " | " +
                         enrollDetail.getStudentId() + " | " +
                         enrollDetail.getCourseId() + " | " +
+                        enrollDetail.getStudentName() + " | " +
+                        enrollDetail.getCourseName() + " | " +
                         enrollDetail.getEnrollmentDate() + " | " +
                         enrollDetail.getStatus()
         );

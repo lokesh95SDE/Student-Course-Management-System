@@ -8,7 +8,35 @@ public class Enrollment {
     private int id ;
     private int studentId;
     private int courseId;
+    private String studentName;
+    private String courseName;
     private LocalDate enrollmentDate;
+    private EnrollmentStatus status;
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public Enrollment(int id, int studentId, int courseId, String studentName, String courseName, LocalDate enrollmentDate, EnrollmentStatus status) {
+        this.id = id;
+        this.studentId = studentId;
+        this.courseId = courseId;
+        this.studentName = studentName;
+        this.enrollmentDate = enrollmentDate;
+        this.status = EnrollmentStatus.ACTIVE;
+    }
 
     public EnrollmentStatus getStatus() {
         return status;
@@ -16,17 +44,6 @@ public class Enrollment {
 
     public void setStatus(EnrollmentStatus status) {
         this.status = status;
-    }
-
-    private EnrollmentStatus status;
-
-
-    public Enrollment(int id, int studentId, int courseId, LocalDate enrollmentDate, EnrollmentStatus status) {
-        this.id = id;
-        this.studentId = studentId;
-        this.courseId = courseId;
-        this.enrollmentDate = enrollmentDate;
-        this.status = EnrollmentStatus.ACTIVE;
     }
 
     public int getId() {

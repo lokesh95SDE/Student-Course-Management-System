@@ -64,10 +64,18 @@ public class StudentService {
 
     public void updateStudent(int id, String firstName, String lastName, String email, String batch) throws EntityNotFoundException {
         Student studentDetail = findStudentById(id);
-        studentDetail.setFirstName(firstName);
+        if(!firstName.isEmpty()) {
+            studentDetail.setFirstName(firstName);
+        }
+        if(!lastName.isEmpty()) {
         studentDetail.setLastName(lastName);
+        }
+        if(!email.isEmpty()) {
         studentDetail.setEmail(email);
+        }
+        if(!batch.isEmpty()) {
         studentDetail.setBatch(batch);
+        }
         System.out.println("Student details updated successfully!");
     }
 
