@@ -137,7 +137,7 @@ EnrollmentService --> CourseService
 Enrollment --> EnrollmentStatus
 IdGenerator -->StudentService
 IdGenerator -->CourseService
-IdGenerator -->CourseService
+IdGenerator -->EnrollmentService
 ```
 
 ---
