@@ -40,7 +40,7 @@ Try this:
 javac -d . (Get-ChildItem -Recurse -Filter *.java src | ForEach-Object { $_.FullName })
 ```
 
-### ▶️ Run the Application
+### Run the Application
 Once Main.class is created after compilation
 ```bash
 java com.airtribe.learntrack.Main
@@ -128,41 +128,44 @@ class EnrollmentStatus {
 Main -->StudentService
 Main -->CourseService
 Main -->EnrollmentService
-Person --> Student_or_trainer
+Person --> Student
 StudentService --> Student
 CourseService --> Course
 EnrollmentService --> Enrollment
 EnrollmentService --> StudentService
 EnrollmentService --> CourseService
 Enrollment --> EnrollmentStatus
+IdGenerator -->StudentService
+IdGenerator -->CourseService
+IdGenerator -->CourseService
 ```
 
 ---
 
-## 🔗 Relationship Explanation
+## Relationship Explanation
 
 * **Inheritance**
-  `Student` extends `Person`, reusing common fields like name and email.
+  Student extends Person, reusing common fields like name and email.
 
 * **Service to Entity Relationship**
   Each service class manages its respective entity using in-memory storage:
 
-    * `StudentService → Student`
-    * `CourseService → Course`
-    * `EnrollmentService → Enrollment`
+    * StudentService --> Student
+    * CourseService --> Course
+    * EnrollmentService --> Enrollment
 
 * **Service Dependencies**
-  `EnrollmentService` depends on:
+  EnrollmentService depends on:
 
-    * `StudentService`
-    * `CourseService`
+    * StudentService
+    * CourseService
       to validate student and course before enrollment.
 
 * **Enum Usage**
-  `EnrollmentStatus` is used to ensure only valid status values (ACTIVE, COMPLETED, CANCELLED).
+  EnrollmentStatus is used to ensure only valid status values (ACTIVE, COMPLETED, CANCELLED).
 
 * **Utility Class**
-  `IdGenerator` provides unique IDs using static methods across the application.
+  IdGenerator provides unique IDs using static methods across the application.
 
 ---
 
