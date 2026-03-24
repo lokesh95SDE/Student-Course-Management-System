@@ -60,6 +60,12 @@ Below is a simplified class diagram showing the relationships between core compo
 ```mermaid
 classDiagram
 
+class Main{
+    -object StudentService
+    -object CourseService
+    -object EnrollmentService
+ }
+ 
 class Person {
   -int id
   -String firstName
@@ -119,7 +125,10 @@ class EnrollmentStatus {
   CANCELLED
 }
 
-Person --> Student or trainer
+Main -->StudentService
+Main -->CourseService
+Main -->EnrollmentService
+Person --> Student_or_trainer
 StudentService --> Student
 CourseService --> Course
 EnrollmentService --> Enrollment
