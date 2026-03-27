@@ -112,11 +112,6 @@ class EnrollmentService {
   +updateEnrollment()
 }
 
-class IdGenerator {
-  +getNextStudentId()
-  +getNextCourseId()
-  +getNextEnrollmentId()
-}
 
 class EnrollmentStatus {
   <<enum>>
@@ -135,9 +130,7 @@ EnrollmentService --> Enrollment
 EnrollmentService --> StudentService
 EnrollmentService --> CourseService
 Enrollment --> EnrollmentStatus
-IdGenerator -->StudentService
-IdGenerator -->CourseService
-IdGenerator -->EnrollmentService
+
 ```
 
 ---
